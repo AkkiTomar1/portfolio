@@ -9,11 +9,8 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div className="min-h-screen w-full scroll-smooth bg-linear-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-gray-100">
-      {/* Navbar */}
+    <div className="min-h-screen w-full scroll-smooth bg-linear-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-gray-100"> 
       <Navbar />
-
-      {/* Sections */}
       <section id="home" className="pt-20">
         <Home />
       </section>
