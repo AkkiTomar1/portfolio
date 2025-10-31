@@ -31,7 +31,7 @@ export default function Projects() {
       </h2>
       <div className="relative max-w-6xl mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 justify-items-center z-10">
         {projects.map((project, i) => (
-          <div key={i} className="w-full max-w-sm transition-transform duration-300 hover:-translate-y-2 hover:scale-105">
+          <div key={i} className="w-full max-w-sm transition-transform duration-300 hover:scale-105">
             <ProjectCard {...project} />
           </div>
         ))}
