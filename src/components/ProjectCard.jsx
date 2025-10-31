@@ -9,8 +9,8 @@ export default function ProjectCard({
   githubLink,
 }) {
   return (
-    <div className="relative bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-[0_0_25px_#ff0080] group max-w-sm border border-white/10">
-
+    <div className="relative bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-[0_0_25px_#ff0080] group max-w-sm border border-white/10">  
+      
       {/* Project Image with soft glow & overlay */}
       <div className="relative h-56 overflow-hidden">
         <img
