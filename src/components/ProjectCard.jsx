@@ -9,14 +9,13 @@ export default function ProjectCard({
   githubLink,
 }) {
   return (
-    <div className="relative bg-linear-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-[0_0_25px_#ff0080] group max-w-sm border border-white/10">
-
+    <div className="relative bg-linear-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-[0_0_25px_#ff0080] group max-w-sm border border-white/10">  
       {/* Project Image with soft glow & overlay */}
       <div className="relative h-56 overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-fit transition-transform duration-500 group-hover:scale-103 p-2 rounded-2xl opacity-90"
+          className="w-full h-full object-fit transition-transform duration-500 group-hover:scale-105 p-2 rounded-2xl opacity-90"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
@@ -51,11 +50,10 @@ export default function ProjectCard({
               href={liveLink}
               target="_blank"
               rel="noreferrer"
-              className="bg-linear-to-r cursor-pointer from-pink-500 to-indigo-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:shadow-[0_0_20px_#ff0080] hover:scale-102 transition-all duration-300"
+              className="bg-linear-to-r cursor-pointer from-pink-500 to-indigo-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:shadow-[0_0_20px_#ff0080] hover:scale-103 transition-all duration-300"
             >
               Live Demo
             </a>
-
           )}
           {githubLink && (
             <a
