@@ -1,25 +1,35 @@
 {
   "name": "portfolio",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
+  "description": "Personal portfolio website for Akhilesh Singh, a Frontend Developer specializing in React and Tailwind CSS.",
   "homepage": "https://AkkiTomar1.github.io/portfolio/",
+  "bugs": {
+    "url": "https://github.com/AkkiTomar1/portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkkiTomar1/portfolio.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-     "predeploy":"npm run build",
-    "deploy":"gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.16",
+    "prop-types": "^15.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-icon": "^1.0.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.9.5",
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {

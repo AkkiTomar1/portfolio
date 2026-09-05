@@ -1,27 +1,19 @@
 import { useState, useEffect } from "react";
 import Logo from '../assets/logo.png';
+import { scrollToSection } from '../utils/scrollToSection';
+import { RESUME_URL, NAV_ITEMS } from '../data/constants';
 
-const navItems = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "services", label: "Services" },
-  { id: "projects", label: "Projects" }
-];
-
-const Navbar = () => {
+export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
 
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const handleNavClick = (id) => {
+    scrollToSection(id);
+    setIsOpen(false);
   };
 
   useEffect(() => {
-    const sectionIds = navItems.map(item => item.id).concat("contact");
+    const sectionIds = NAV_ITEMS.map(item => item.id).concat("contact");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,29 +30,29 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed w-full z-50 top-0 left-0">
+    <nav className="fixed w-full z-50 top-0 left-0" aria-label="Main navigation">
       <div>
         <div className="flex justify-between items-center py-3 px-4 sm:px-8 
-          bg-linear-to-r from-[#1a1a40] via-[#302b63] to-[#24243e] 
+          bg-linear-to-r from-brand-indigo via-brand-mid to-brand-deep 
           backdrop-blur-md shadow-2xl rounded-b-3xl border-b-[3px] border-purple-500/50"
         >
-          {/* Logo */}
-          <div
-            className="flex items-center gap-2 cursor-pointer group"
-            onClick={() => scrollToSection("home")}
+          <button
+            className="flex items-center gap-2 cursor-pointer group bg-transparent border-0 p-0"
+            onClick={() => handleNavClick("home")}
+            aria-label="Go to home"
           >
             <div className="bg-linear-to-br from-pink-900 via-pink-300 to-purple-900 rounded-full shadow-lg transition-transform duration-200 group-hover:scale-103">
-              <img src={Logo} alt="Logo" className="h-11 w-12 rounded-xl bg-white object-center" />
+              <img src={Logo} alt="Akhilesh Tomar - Portfolio Logo" className="h-11 w-12 rounded-xl bg-white object-center" />
             </div>
-          </div>
+          </button>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-5">
-            {navItems.map(({ id, label }) => (
+            {NAV_ITEMS.map(({ id, label }) => (
               <button
                 key={id}
-                onClick={() => scrollToSection(id)}
-                className="relative font-medium px-3 py-1 text-white text-lg bg-transparent transition-all duration-200 hover:text-yellow-400 rounded-md"
+                onClick={() => handleNavClick(id)}
+                className="relative font-medium px-3 py-1 text-white text-lg bg-transparent transition-all duration-200 hover:text-yellow-400 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+                aria-current={activeSection === id ? "true" : undefined}
               >
                 <span className={`transition font-semibold ${activeSection === id ? "text-yellow-400" : ""}`}>
                   {label}
@@ -72,37 +64,40 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Desktop Resume Button */}
           <div className="hidden md:flex">
             <a
-              href="https://drive.google.com/file/d/1f4z0_md6y5RRb_Y1YdvWNWd9MCKqE-Lp/view?usp=sharing"
+              href={RESUME_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={`relative bg-linear-to-r from-pink-500 to-purple-600 shadow-xl text-white px-7 py-2 rounded-full font-bold hover:scale-105 transition ring-4 ${activeSection === "contact" ? "ring-yellow-300" : "ring-transparent"}`}
             >
               Resume
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-yellow-400 bg-white rounded-full p-2 shadow focus:outline-none transition-all"
+              className="text-yellow-400 bg-white rounded-full p-2 shadow transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? "✕" : "☰"}
             </button>
           </div>
         </div>
 
-        {/* Mobile Slide-in Menu */}
         {isOpen && (
-          <div className="md:hidden animate-fade-in-down bg-white/95 backdrop-blur-md shadow-2xl rounded-b-3xl border-b-4 border-purple-200 px-6 mx-4">
+          <div
+            id="mobile-menu"
+            className="md:hidden animate-fade-in-down bg-white/95 backdrop-blur-md shadow-2xl rounded-b-3xl border-b-4 border-purple-200 px-6 mx-4"
+          >
             <div className="flex flex-col items-center space-y-4 py-5">
-              {navItems.map(({ id, label }) => (
+              {NAV_ITEMS.map(({ id, label }) => (
                 <button
                   key={id}
-                  onClick={() => scrollToSection(id)}
+                  onClick={() => handleNavClick(id)}
                   className={`w-full py-2 font-semibold rounded-xl text-gray-700 transition duration-200 hover:text-yellow-400 hover:bg-purple-50 text-center ${
                     activeSection === id
                       ? "bg-yellow-50 text-yellow-600 border-l-4 border-yellow-400 font-bold"
@@ -113,11 +108,10 @@ const Navbar = () => {
                 </button>
               ))}
 
-              {/* Mobile Resume Button */}
               <a
-                href="https://drive.google.com/file/d/1f4z0_md6y5RRb_Y1YdvWNWd9MCKqE-Lp/view?usp=sharing"
+                href={RESUME_URL}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-full py-2 bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-full font-bold text-center shadow hover:opacity-95 transition"
               >
                 Resume
@@ -128,6 +122,4 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
