@@ -1,5 +1,5 @@
 export const RESUME_URL =
-  "https://drive.google.com/file/d/1f4z0_md6y5RRb_Y1YdvWNWd9MCKqE-Lp/view?usp=sharing";
+  "https://drive.google.com/file/d/1OVtWoErAMIiAov1GhZvVDvIHCGI1kyRR/view?usp=sharing";
 
 export const EMAILJS = {
   serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_kk9rkww",
@@ -10,11 +10,15 @@ export const EMAILJS = {
 export const CONTACT = {
   email: "astomar9628@gmail.com",
   phone: "+91 9628547643",
+  location: "Greater Noida, UP, India",
+  availability: "Open to work & freelance projects",
 };
 
 export const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
   { id: "services", label: "Services" },
   { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ];

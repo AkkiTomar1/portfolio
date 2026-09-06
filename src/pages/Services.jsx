@@ -1,28 +1,27 @@
 import ServiceCard from "../components/ServiceCard";
+import SectionHeading from "../components/SectionHeading";
 import { servicesData } from "../data/servicesData";
 
 export default function Services() {
   return (
-    <section className="py-20 px-6 bg-linear-to-b from-brand-midnight via-brand-ink to-brand-ocean text-white">
-      <div className="max-w-6xl mx-auto text-center relative z-10">
-        <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 mb-12 drop-shadow-lg animate-text-glow">
-          My Services
-        </h3>
+    <section className="px-6 sm:px-10 md:px-14">
+      <SectionHeading
+        eyebrow="What I do"
+        title="My"
+        highlight="Services"
+        subtitle="From frontend to backend, I help build complete, production-ready web products."
+      />
 
-        <div className="flex flex-wrap justify-center gap-10">
-          {servicesData.map((service) => (
-            <div
-              key={service.title}
-              className="w-full sm:w-[80%] md:w-[45%] lg:w-[28%] transition-transform duration-300 hover:-translate-y-2 hover:scale-105"
-            >
-              <ServiceCard
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-              />
-            </div>
-          ))}
-        </div>
+      <div className="mx-auto grid w-full max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {servicesData.map((service) => (
+          <ServiceCard
+            key={service.title}
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+            features={service.features}
+          />
+        ))}
       </div>
     </section>
   );

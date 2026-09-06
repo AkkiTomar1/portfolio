@@ -1,46 +1,83 @@
 import { socialLinks } from "../data/socialLinks";
-import { CONTACT } from "../data/constants";
+import { CONTACT, NAV_ITEMS } from "../data/constants";
+import { scrollToSection } from "../utils/scrollToSection";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-linear-to-b from-brand-midnight via-brand-ink to-brand-ocean text-gray-300 py-10 px-6 mt-10 border-t border-pink-500/10">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-
-        <div className="text-center md:text-left space-y-2">
-          <h3 className="text-xl font-bold text-pink-400 tracking-wide">Let's Connect</h3>
-          <p>Email: <a href={`mailto:${CONTACT.email}`} className="hover:text-pink-400 transition">{CONTACT.email}</a></p>
-          <p>
-            Phone:{" "}
-            <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`} className="hover:text-pink-400 transition">
-              {CONTACT.phone}
-            </a>
+    <footer className="relative mt-10 border-t border-white/10 bg-ink/60 text-gray-300 backdrop-blur-md">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-14 sm:px-10 md:grid-cols-3 md:px-14">
+        <div>
+          <h3 className="font-display text-xl font-bold text-white">
+            Akhilesh<span className="text-gradient">.</span> Singh
+          </h3>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-500">
+            Frontend Developer crafting responsive, modern and accessible web
+            experiences with React, NestJS and Tailwind CSS.
           </p>
         </div>
 
-        <div className="flex space-x-5 text-2xl">
-          {socialLinks.map(({ name, url, icon: Icon }) => (
-            <a
-              key={name}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={name}
-              className="text-gray-400 hover:text-pink-500 transition transform hover:scale-110"
-            >
-              <Icon />
+        <div>
+          <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+            Quick Links
+          </h4>
+          <ul className="space-y-2.5">
+            {NAV_ITEMS.map(({ id, label }) => (
+              <li key={id}>
+                <button
+                  onClick={() => scrollToSection(id)}
+                  className="text-sm text-gray-400 transition-colors hover:text-pink-400"
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">
+            Get In Touch
+          </h4>
+          <p className="text-sm">
+            <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-pink-400">
+              {CONTACT.email}
             </a>
-          ))}
+          </p>
+          <p className="mt-2 text-sm">
+            <a
+              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
+              className="transition-colors hover:text-pink-400"
+            >
+              {CONTACT.phone}
+            </a>
+          </p>
+          <p className="mt-2 text-sm text-gray-500">{CONTACT.location}</p>
+
+          <div className="mt-5 flex gap-3">
+            {socialLinks.map(({ name, url, icon: Icon }) => (
+              <a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-500/50 hover:text-pink-400"
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="w-full h-px bg-linear-to-r from-transparent via-pink-500/50 to-transparent my-8" />
-
-      <div className="text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} <span className="text-pink-400 font-semibold">Akhilesh Tomar</span> — Built with ❤️ using{" "}
-        <span className="text-indigo-400">React</span> & <span className="text-pink-400">Tailwind CSS</span>
+      <div className="border-t border-white/10 py-5">
+        <p className="text-center text-sm text-gray-500">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-semibold text-pink-400">Akhilesh Singh Tomar</span> — Built
+          with <span className="text-indigo-400">React</span> &{" "}
+          <span className="text-pink-400">Tailwind CSS</span>
+        </p>
       </div>
-
-      <div className="absolute inset-x-0 bottom-0 h-1 bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-t-full shadow-[0_0_15px_#ff00ff]" />
     </footer>
   );
 }

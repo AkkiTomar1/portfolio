@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import Logo from '../assets/logo.png';
-import { scrollToSection } from '../utils/scrollToSection';
-import { RESUME_URL, NAV_ITEMS } from '../data/constants';
+import Logo from "../assets/logo.png";
+import { scrollToSection } from "../utils/scrollToSection";
+import { useScrollProgress } from "../utils/useScrollProgress";
+import { RESUME_URL, NAV_ITEMS } from "../data/constants";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
+  const progress = useScrollProgress();
 
   const handleNavClick = (id) => {
     scrollToSection(id);
@@ -13,14 +15,14 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const sectionIds = NAV_ITEMS.map(item => item.id).concat("contact");
+    const sectionIds = NAV_ITEMS.map((item) => item.id);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.5, rootMargin: "-20% 0px -50% 0px" }
     );
     sectionIds.forEach((id) => {
       const section = document.getElementById(id);
@@ -30,89 +32,111 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed w-full z-50 top-0 left-0" aria-label="Main navigation">
-      <div>
-        <div className="flex justify-between items-center py-3 px-4 sm:px-8 
-          bg-linear-to-r from-brand-indigo via-brand-mid to-brand-deep 
-          backdrop-blur-md shadow-2xl rounded-b-3xl border-b-[3px] border-purple-500/50"
-        >
+    <nav
+      className="fixed top-0 left-0 z-50 w-full"
+      aria-label="Main navigation"
+    >
+      <div
+        className="absolute top-0 left-0 h-1 bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-[0_0_12px_rgba(255,45,149,0.7)] transition-[width] duration-150"
+        style={{ width: `${progress}%` }}
+      />
+
+      <div className="glass-strong border-b border-white/10">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 sm:px-10 md:px-14">
           <button
-            className="flex items-center gap-2 cursor-pointer group bg-transparent border-0 p-0"
+            className="flex items-center gap-2.5 cursor-pointer bg-transparent border-0 p-0"
             onClick={() => handleNavClick("home")}
             aria-label="Go to home"
           >
-            <div className="bg-linear-to-br from-pink-900 via-pink-300 to-purple-900 rounded-full shadow-lg transition-transform duration-200 group-hover:scale-103">
-              <img src={Logo} alt="Akhilesh Tomar - Portfolio Logo" className="h-11 w-12 rounded-xl bg-white object-center" />
-            </div>
+            <img
+              src={Logo}
+              alt="Akhilesh Tomar - Portfolio Logo"
+              className="h-11 w-11 rounded-xl object-cover shadow-lg ring-1 ring-white/10"
+            />
+            <span className="hidden font-display text-lg font-bold text-white sm:block">
+              Akhilesh<span className="text-gradient">.</span>
+            </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map(({ id, label }) => (
               <button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className="relative font-medium px-3 py-1 text-white text-lg bg-transparent transition-all duration-200 hover:text-yellow-400 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
                 aria-current={activeSection === id ? "true" : undefined}
+                className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-pink-400 outline-none ${
+                  activeSection === id
+                    ? "bg-white/10 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]"
+                    : "text-gray-400 hover:text-white"
+                }`}
               >
-                <span className={`transition font-semibold ${activeSection === id ? "text-yellow-400" : ""}`}>
-                  {label}
-                </span>
-                <span className={`absolute left-0 -bottom-1 w-full h-0.5 rounded-full transition-all duration-300 ${
-                  activeSection === id ? "bg-linear-to-r from-yellow-400 via-pink-400 to-purple-600 scale-x-100" : "scale-x-0"
-                }`} />
+                {label}
+                {activeSection === id && (
+                  <span className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-pink-500 shadow-[0_0_8px_rgba(255,45,149,0.9)]" />
+                )}
               </button>
             ))}
           </div>
 
-          <div className="hidden md:flex">
+          <div className="hidden lg:block">
             <a
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative bg-linear-to-r from-pink-500 to-purple-600 shadow-xl text-white px-7 py-2 rounded-full font-bold hover:scale-105 transition ring-4 ${activeSection === "contact" ? "ring-yellow-300" : "ring-transparent"}`}
+              className="rounded-full bg-linear-to-r from-pink-600 via-purple-600 to-indigo-600 px-6 py-2.5 text-sm font-bold text-white shadow-[0_4px_20px_rgba(255,45,149,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_6px_28px_rgba(255,45,149,0.55)]"
             >
               Resume
             </a>
           </div>
 
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-yellow-400 bg-white rounded-full p-2 shadow transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? "✕" : "☰"}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-lg border border-white/10 bg-white/5 p-2 text-gray-200 transition-colors hover:text-pink-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 lg:hidden"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              {isOpen ? (
+                <>
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="6" y1="18" x2="18" y2="6" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="14" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
 
         {isOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden animate-fade-in-down bg-white/95 backdrop-blur-md shadow-2xl rounded-b-3xl border-b-4 border-purple-200 px-6 mx-4"
+            className="animate-fade-in-down border-t border-white/10 px-4 pb-5 pt-2 lg:hidden"
           >
-            <div className="flex flex-col items-center space-y-4 py-5">
+            <div className="flex flex-col gap-1.5">
               {NAV_ITEMS.map(({ id, label }) => (
                 <button
                   key={id}
                   onClick={() => handleNavClick(id)}
-                  className={`w-full py-2 font-semibold rounded-xl text-gray-700 transition duration-200 hover:text-yellow-400 hover:bg-purple-50 text-center ${
+                  className={`w-full rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors ${
                     activeSection === id
-                      ? "bg-yellow-50 text-yellow-600 border-l-4 border-yellow-400 font-bold"
-                      : ""
+                      ? "bg-white/10 text-pink-400"
+                      : "text-gray-300 hover:bg-white/5 hover:text-white"
                   }`}
                 >
                   {label}
                 </button>
               ))}
-
               <a
                 href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2 bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-full font-bold text-center shadow hover:opacity-95 transition"
+                className="mt-2 w-full rounded-xl bg-linear-to-r from-pink-600 via-purple-600 to-indigo-600 px-4 py-2.5 text-center text-sm font-bold text-white shadow-lg"
               >
                 Resume
               </a>
