@@ -106,7 +106,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 76px;
+  scroll-padding-top: 92px;
+  overflow-x: hidden;
 }
 
 body {
@@ -119,23 +120,6 @@ body {
 ::selection {
   background: rgba(255, 45, 149, 0.35);
   color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0d0b26;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff2d95, #a855f7, #6366f1);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff4da6, #b56df8, #7c7df4);
 }
 
 .reveal {

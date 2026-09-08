@@ -68,18 +68,18 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 z-50 w-full"
+      className="fixed top-0 left-0 z-50 w-full px-8 pt-4 sm:px-12 md:px-16"
       aria-label="Main navigation"
     >
-      <div
-        className="absolute top-0 left-0 h-1 bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-[0_0_12px_rgba(255,45,149,0.7)] transition-[width] duration-150"
-        style={{ width: `${progress}%` }}
-      />
+      <div className="glass-strong relative mx-auto w-full max-w-7xl overflow-hidden rounded-2xl border border-white/10">
+        <div
+          className="absolute top-0 left-0 h-1 bg-linear-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-[0_0_12px_rgba(255,45,149,0.7)] transition-[width] duration-150"
+          style={{ width: `${progress}%` }}
+        />
 
-      <div className="glass-strong border-b border-white/10">
         <div
           ref={headerRef}
-          className="mx-auto flex w-full max-w-7xl items-center justify-between px-8 py-3 sm:px-12 md:px-16"
+          className="flex items-center justify-between gap-4 px-5 py-3 sm:px-7 md:px-8"
         >
           <button
             className="flex items-center gap-2.5 cursor-pointer bg-transparent border-0 p-0"
@@ -154,7 +154,7 @@ export default function Navbar() {
         {isOpen && (
           <div
             id="mobile-menu"
-            className="animate-fade-in-down border-t border-white/10 px-6 pb-5 pt-2 sm:px-10 lg:hidden md:px-14"
+            className="animate-fade-in-down border-t border-white/10 px-5 pb-5 pt-2 sm:px-7 md:px-8 lg:hidden"
           >
             <div className="flex flex-col gap-1.5">
               {NAV_ITEMS.map(({ id, label }) => (

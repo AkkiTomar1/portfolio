@@ -12,7 +12,7 @@ import {
   SiNodedotjs,
   SiExpress,
 } from "react-icons/si";
-import Profile from "../assets/Akhilesh_Microsoft.jpg";
+import Profile from "../assets/profile.jpeg";
 import { scrollToSection } from "../utils/scrollToSection";
 import { useTypewriter } from "../utils/useTypewriter";
 import { useScrollReveal } from "../utils/useScrollReveal";
