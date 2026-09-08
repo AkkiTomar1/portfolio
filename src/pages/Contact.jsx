@@ -30,11 +30,18 @@ export default function Contact() {
     setErrorMessage("");
     setMessageSent(false);
 
+    const params = {
+      name: form.current.name.value,
+      email: form.current.email.value,
+      message: form.current.message.value,
+      time: new Date().toLocaleString(),
+    };
+
     emailjs
-      .sendForm(
+      .send(
         EMAILJS.serviceId,
         EMAILJS.templateId,
-        form.current,
+        params,
         EMAILJS.publicKey
       )
       .then(
@@ -123,7 +130,7 @@ export default function Contact() {
                 <input
                   id="user_name"
                   type="text"
-                  name="user_name"
+                  name="name"
                   placeholder="John Doe"
                   required
                   maxLength={100}
@@ -138,7 +145,7 @@ export default function Contact() {
                 <input
                   id="user_email"
                   type="email"
-                  name="user_email"
+                  name="email"
                   placeholder="john@example.com"
                   required
                   maxLength={150}

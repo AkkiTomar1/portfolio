@@ -2,9 +2,9 @@ export const RESUME_URL =
   "https://drive.google.com/file/d/1OVtWoErAMIiAov1GhZvVDvIHCGI1kyRR/view?usp=sharing";
 
 export const EMAILJS = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_kk9rkww",
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_5zyytgo",
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "-ol63dN72nd4555Y4",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_0w2u93i",
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_eam3rxf",
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "NTzvLpNM49GMKpTZB",
 };
 
 export const CONTACT = {
