@@ -14,7 +14,7 @@ export default function Projects() {
       : projectsData.filter((project) => project.category === active);
 
   return (
-    <section className="px-6 sm:px-10 md:px-14">
+    <section className="px-8 sm:px-12 md:px-16">
       <SectionHeading
         eyebrow="My work"
         title="Featured"

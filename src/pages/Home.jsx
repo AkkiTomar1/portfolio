@@ -16,7 +16,7 @@ import Profile from "../assets/Akhilesh_Microsoft.jpg";
 import { scrollToSection } from "../utils/scrollToSection";
 import { useTypewriter } from "../utils/useTypewriter";
 import { useScrollReveal } from "../utils/useScrollReveal";
-import { RESUME_URL, CONTACT } from "../data/constants";
+import { RESUME_URL } from "../data/constants";
 import { socialLinks } from "../data/socialLinks";
 
 const ROLES = ["Frontend Developer", "React Developer", "NestJS Developer", "UI Enthusiast"];
@@ -135,17 +135,9 @@ export default function Home() {
   const visualRef = useScrollReveal();
 
   return (
-    <section className="relative flex min-h-[calc(100vh-4.5rem)] flex-col justify-center overflow-hidden px-6 pb-10 sm:px-10 md:px-14">
+    <section className="relative flex min-h-[calc(100vh-1.5rem)] flex-col justify-center overflow-hidden px-8 pb-20 pt-10 sm:px-12 md:px-16">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <div ref={textRef} className="reveal text-center md:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
-            </span>
-            {CONTACT.availability}
-          </span>
-
           <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
             Hi, I'm{" "}
             <span className="text-gradient">Akhilesh Singh</span>

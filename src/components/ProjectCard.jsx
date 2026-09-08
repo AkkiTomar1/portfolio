@@ -6,6 +6,7 @@ export default function ProjectCard({
   description,
   image,
   placeholderIcon: PlaceholderIcon,
+  banner: Banner,
   category,
   features = [],
   tech = [],
@@ -17,7 +18,11 @@ export default function ProjectCard({
   return (
     <div className="glass-strong group relative flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:border-pink-500/30 hover:shadow-[0_16px_50px_rgba(255,45,149,0.2)]">
       <div className="relative h-48 overflow-hidden">
-        {image ? (
+        {Banner ? (
+          <div className="h-full w-full">
+            <Banner />
+          </div>
+        ) : image ? (
           <img
             src={image}
             alt={title}
@@ -114,6 +119,7 @@ ProjectCard.propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.string,
   placeholderIcon: PropTypes.func,
+  banner: PropTypes.func,
   category: PropTypes.string,
   features: PropTypes.arrayOf(PropTypes.string),
   tech: PropTypes.arrayOf(PropTypes.string),

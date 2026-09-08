@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.webp";
 import { scrollToSection } from "../utils/scrollToSection";
 import { useScrollProgress } from "../utils/useScrollProgress";
 import { RESUME_URL, NAV_ITEMS } from "../data/constants";
@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const progress = useScrollProgress();
   const navRef = useRef(null);
+  const headerRef = useRef(null);
 
   const handleNavClick = (id) => {
     scrollToSection(id);
@@ -18,7 +19,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const updateActiveSection = () => {
-      const line = (navRef.current?.getBoundingClientRect().bottom ?? 80) + 20;
+      const line = (headerRef.current?.getBoundingClientRect().bottom ?? 70) + 20;
       let current = NAV_ITEMS[0].id;
       for (const { id } of NAV_ITEMS) {
         const section = document.getElementById(id);
@@ -42,6 +43,28 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const onPointerDown = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isOpen]);
+
   return (
     <nav
       ref={navRef}
@@ -54,7 +77,10 @@ export default function Navbar() {
       />
 
       <div className="glass-strong border-b border-white/10">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 sm:px-10 md:px-14">
+        <div
+          ref={headerRef}
+          className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 sm:px-10 md:px-14"
+        >
           <button
             className="flex items-center gap-2.5 cursor-pointer bg-transparent border-0 p-0"
             onClick={() => handleNavClick("home")}
@@ -135,6 +161,7 @@ export default function Navbar() {
                 <button
                   key={id}
                   onClick={() => handleNavClick(id)}
+                  aria-current={activeSection === id ? "true" : undefined}
                   className={`w-full rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors ${
                     activeSection === id
                       ? "bg-white/10 text-pink-400"

@@ -1,6 +1,6 @@
-import todo from "../assets/todo.png";
-import Filmvault from "../assets/filmvault.png";
-import { FaServer } from "react-icons/fa";
+import FilmVaultBanner from "../components/banners/FilmVaultBanner";
+import TodoListBanner from "../components/banners/TodoListBanner";
+import ApiDashboardBanner from "../components/banners/ApiDashboardBanner";
 
 export const projectCategories = ["All", "React", "Full Stack"];
 
@@ -11,7 +11,8 @@ export const projectsData = [
     description:
       "A dashboard for managing and monitoring APIs through Kong API Gateway, with a NestJS backend powering secure, authenticated API management.",
     image: null,
-    placeholderIcon: FaServer,
+    placeholderIcon: null,
+    banner: ApiDashboardBanner,
     features: [
       "Monitor & manage APIs via Kong Admin REST APIs",
       "Secure API management & authentication with NestJS",
@@ -27,8 +28,9 @@ export const projectsData = [
     category: "React",
     description:
       "An IMDb-style movie database app powered by the TMDb API — browse trending movies, search titles, and manage your own watchlist.",
-    image: Filmvault,
+    image: null,
     placeholderIcon: null,
+    banner: FilmVaultBanner,
     features: [
       "Search movies & TV shows instantly",
       "Rich movie detail pages",
@@ -44,8 +46,9 @@ export const projectsData = [
     category: "React",
     description:
       "A simple and responsive To-Do List application with LocalStorage persistence and a clean, distraction-free interface.",
-    image: todo,
+    image: null,
     placeholderIcon: null,
+    banner: TodoListBanner,
     features: [
       "Add, complete & delete tasks",
       "LocalStorage data persistence",

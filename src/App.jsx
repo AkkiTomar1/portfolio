@@ -23,7 +23,7 @@ function BackToTop() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Back to top"
-      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-pink-600 to-indigo-600 text-white shadow-[0_0_20px_rgba(255,45,149,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_28px_rgba(255,45,149,0.8)] ${
+      className={`fixed bottom-6 right-6 z-50 hidden h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-pink-600 to-indigo-600 text-white shadow-[0_0_20px_rgba(255,45,149,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_28px_rgba(255,45,149,0.8)] sm:flex ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
       }`}
     >
@@ -53,15 +53,15 @@ export default function App() {
 
       <Navbar />
       <main id="main">
-        <section id="home" className="pt-12">
+        <section id="home" className="pt-6">
           <Home />
         </section>
 
-        <section id="about" className="pt-12 pb-24">
+        <section id="about" className="pt-6 pb-10">
           <About />
         </section>
 
-        <section id="skills" className="pt-12 pb-24">
+        <section id="skills" className="pt-6 pb-24">
           <Skills />
         </section>
 
@@ -69,11 +69,11 @@ export default function App() {
           <Services />
         </section>
 
-        <section id="projects" className="pt-8 pb-24">
+        <section id="projects" className="pt-6 pb-24">
           <Projects />
         </section>
 
-        <section id="contact" className="pt-12 pb-24">
+        <section id="contact" className="pt-6 pb-24">
           <Contact />
         </section>
       </main>
