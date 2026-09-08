@@ -1,8 +1,8 @@
-import { FaGraduationCap, FaAward } from "react-icons/fa";
+import { FaGraduationCap } from "react-icons/fa";
 import SectionHeading from "../components/SectionHeading";
 import { useScrollReveal } from "../utils/useScrollReveal";
 import { skillGroups, techStack } from "../data/skillsData";
-import { jobs, education, certifications } from "../data/experienceData";
+import { jobs, education } from "../data/experienceData";
 
 export default function Skills() {
   const skillsRef = useScrollReveal();
@@ -115,22 +115,6 @@ export default function Skills() {
               </li>
             ))}
           </ol>
-
-          <h3 className="mb-6 mt-12 flex items-center gap-2 font-display text-2xl font-bold text-white">
-            <FaAward className="text-yellow-400" />
-            <span className="text-gradient">Certifications</span>
-          </h3>
-          <div className="flex flex-wrap gap-3">
-            {certifications.map((cert) => (
-              <div
-                key={cert.name}
-                className="glass rounded-xl px-5 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/30"
-              >
-                <p className="text-sm font-bold text-white">{cert.name}</p>
-                <p className="text-xs text-gray-500">{cert.issuer}</p>
-              </div>
-            ))}
-          </div>
 
           <div className="mt-10">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">

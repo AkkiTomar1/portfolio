@@ -53,27 +53,27 @@ export default function App() {
 
       <Navbar />
       <main id="main">
-        <section id="home" className="pt-24">
+        <section id="home" className="pt-12">
           <Home />
         </section>
 
-        <section id="about" className="pt-24 pb-24">
+        <section id="about" className="pt-12 pb-24">
           <About />
         </section>
 
-        <section id="skills" className="py-24">
+        <section id="skills" className="pt-12 pb-24">
           <Skills />
         </section>
 
-        <section id="services" className="py-24">
+        <section id="services" className="pt-12 pb-24">
           <Services />
         </section>
 
-        <section id="projects" className="py-24">
+        <section id="projects" className="pt-8 pb-24">
           <Projects />
         </section>
 
-        <section id="contact" className="py-24">
+        <section id="contact" className="pt-12 pb-24">
           <Contact />
         </section>
       </main>

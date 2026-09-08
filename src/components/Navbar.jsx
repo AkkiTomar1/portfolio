@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Logo from "../assets/logo.png";
 import { scrollToSection } from "../utils/scrollToSection";
 import { useScrollProgress } from "../utils/useScrollProgress";
@@ -8,31 +8,43 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const progress = useScrollProgress();
+  const navRef = useRef(null);
 
   const handleNavClick = (id) => {
     scrollToSection(id);
+    setActiveSection(id);
     setIsOpen(false);
   };
 
   useEffect(() => {
-    const sectionIds = NAV_ITEMS.map((item) => item.id);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { threshold: 0.5, rootMargin: "-20% 0px -50% 0px" }
-    );
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
-    return () => observer.disconnect();
+    const updateActiveSection = () => {
+      const line = (navRef.current?.getBoundingClientRect().bottom ?? 80) + 20;
+      let current = NAV_ITEMS[0].id;
+      for (const { id } of NAV_ITEMS) {
+        const section = document.getElementById(id);
+        if (!section) continue;
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= line && rect.bottom > line) {
+          current = id;
+          break;
+        }
+      }
+      setActiveSection(current);
+    };
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    const watchdog = window.setInterval(updateActiveSection, 250);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+      window.clearInterval(watchdog);
+    };
   }, []);
 
   return (
     <nav
+      ref={navRef}
       className="fixed top-0 left-0 z-50 w-full"
       aria-label="Main navigation"
     >
@@ -116,7 +128,7 @@ export default function Navbar() {
         {isOpen && (
           <div
             id="mobile-menu"
-            className="animate-fade-in-down border-t border-white/10 px-4 pb-5 pt-2 lg:hidden"
+            className="animate-fade-in-down border-t border-white/10 px-6 pb-5 pt-2 sm:px-10 lg:hidden md:px-14"
           >
             <div className="flex flex-col gap-1.5">
               {NAV_ITEMS.map(({ id, label }) => (

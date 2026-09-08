@@ -37,88 +37,84 @@ const HIGHLIGHTS = [
 const STATS = [
   { value: "3+", label: "Projects Built" },
   { value: "15+", label: "Technologies" },
-  { value: "2", label: "Certifications" },
   { value: "1+", label: "Year Experience" },
 ];
 
 export default function About() {
   const introRef = useScrollReveal();
   const highlightsRef = useScrollReveal();
-  const statsRef = useScrollReveal();
 
   return (
-    <section className="px-4 sm:px-6 md:px-8">
-      <div className="mx-auto w-full max-w-5xl">
-        <div ref={introRef} className="reveal">
-          <span className="text-sm font-semibold uppercase tracking-widest text-pink-400">
-            About Me
-          </span>
-          <h2 className="mt-3 font-display text-4xl font-bold text-white md:text-5xl">
-            Turning ideas into{" "}
-            <span className="text-gradient">digital experiences</span>
-          </h2>
+    <section className="px-6 sm:px-10 md:px-14">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <div ref={introRef} className="reveal">
+            <span className="text-sm font-semibold uppercase tracking-widest text-pink-400">
+              About Me
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-bold text-white md:text-5xl">
+              Turning ideas into{" "}
+              <span className="text-gradient">digital experiences</span>
+            </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-gray-300">
-            I'm a Software Developer Apprentice at{" "}
-            <span className="font-semibold text-pink-400">Network18</span> with a Master's in
-            Computer Applications. I specialize in building responsive{" "}
-            <span className="font-semibold text-purple-400">React</span> interfaces and robust{" "}
-            <span className="font-semibold text-indigo-400">NestJS</span> APIs.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-gray-400">
-            From pixel-perfect UIs to secure backend services, I enjoy owning a feature end to end —
-            clean code, modern design principles and performance are at the core of everything I
-            build. Currently open to new opportunities and interesting freelance projects.
-          </p>
-
-          <div className="mt-7">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">
-              Tech I work with
+            <p className="mt-6 text-lg leading-relaxed text-gray-300">
+              I'm a Software Developer Apprentice at{" "}
+              <span className="font-semibold text-pink-400">Network18</span> with a Master's in
+              Computer Applications. I specialize in building responsive{" "}
+              <span className="font-semibold text-purple-400">React</span> interfaces and robust{" "}
+              <span className="font-semibold text-indigo-400">NestJS</span> APIs.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-gray-300 transition-colors hover:border-pink-500/40 hover:text-pink-300"
+            <p className="mt-4 text-base leading-relaxed text-gray-400">
+              From pixel-perfect UIs to secure backend services, I enjoy owning a feature end to end —
+              clean code, modern design principles and performance are at the core of everything I
+              build. Currently open to new opportunities and interesting freelance projects.
+            </p>
+
+            <div className="mt-7">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">
+                Tech I work with
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-gray-300 transition-colors hover:border-pink-500/40 hover:text-pink-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div ref={highlightsRef} className="reveal reveal-delay-1 flex flex-col gap-6">
+            <div className="grid gap-5 sm:grid-cols-2">
+              {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
+                <div
+                  key={title}
+                  className="glass-strong group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-pink-500/30 hover:shadow-[0_10px_40px_rgba(255,45,149,0.15)]"
                 >
-                  {tech}
-                </span>
+                  <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br from-pink-600 via-purple-600 to-indigo-600 text-lg text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+                    <Icon />
+                  </span>
+                  <h3 className="font-display text-base font-bold text-white">{title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-gray-400">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+              {STATS.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="font-display text-3xl font-bold text-gradient">{stat.value}</p>
+                  <p className="mt-1 text-xs font-medium text-gray-400">{stat.label}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div
-          ref={highlightsRef}
-          className="reveal reveal-delay-1 mt-12 grid gap-5 sm:grid-cols-2"
-        >
-          {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
-            <div
-              key={title}
-              className="glass-strong group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-pink-500/30 hover:shadow-[0_10px_40px_rgba(255,45,149,0.15)]"
-            >
-              <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br from-pink-600 via-purple-600 to-indigo-600 text-lg text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                <Icon />
-              </span>
-              <h3 className="font-display text-base font-bold text-white">{title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-gray-400">{text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div
-          ref={statsRef}
-          className="reveal reveal-delay-2 mt-12 grid grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:grid-cols-4"
-        >
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="font-display text-3xl font-bold text-gradient">{stat.value}</p>
-              <p className="mt-1 text-xs font-medium text-gray-400">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <div className="mt-12 flex flex-wrap items-center gap-4">
           <a
             href={RESUME_URL}
             target="_blank"

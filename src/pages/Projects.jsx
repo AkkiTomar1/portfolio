@@ -22,7 +22,7 @@ export default function Projects() {
         subtitle="A selection of things I've designed, built and shipped."
       />
 
-      <div className="mb-10 flex flex-wrap justify-center gap-3">
+      <div className="mb-3 flex flex-wrap justify-center gap-3">
         {projectCategories.map((cat) => (
           <button
             key={cat}
@@ -41,7 +41,7 @@ export default function Projects() {
 
       <div
         ref={gridRef}
-        className="reveal mx-auto grid w-full max-w-7xl items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3"
+        className="reveal mx-auto grid w-full max-w-7xl items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3"
       >
         {filtered.map((project) => (
           <ProjectCard key={project.title} {...project} />

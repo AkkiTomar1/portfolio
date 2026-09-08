@@ -135,8 +135,8 @@ export default function Home() {
   const visualRef = useScrollReveal();
 
   return (
-    <section className="relative flex min-h-[calc(100vh-6rem)] flex-col justify-center overflow-hidden px-6 pb-10 sm:px-10 md:px-14">
-      <div className="mx-auto grid w-full max-w-5xl items-center gap-14 md:grid-cols-2 md:gap-18 lg:grid-cols-[1.1fr_0.9fr]">
+    <section className="relative flex min-h-[calc(100vh-4.5rem)] flex-col justify-center overflow-hidden px-6 pb-10 sm:px-10 md:px-14">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <div ref={textRef} className="reveal text-center md:text-left">
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
             <span className="relative flex h-2.5 w-2.5">
@@ -146,12 +146,12 @@ export default function Home() {
             {CONTACT.availability}
           </span>
 
-          <h1 className="mt-6 font-display text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
             Hi, I'm{" "}
             <span className="text-gradient">Akhilesh Singh</span>
           </h1>
 
-          <p className="mt-4 min-h-10 font-display text-xl font-semibold text-purple-200 md:text-2xl">
+          <p className="mt-4 min-h-12 font-display text-xl font-semibold text-purple-200 md:min-h-14 md:text-2xl">
             I'm a <span className="text-white">{typed}</span>
             <span className="ml-1 inline-block w-1 animate-blink bg-pink-500 text-pink-500">|</span>
           </p>
@@ -209,7 +209,7 @@ export default function Home() {
               alt="Akhilesh Singh"
               loading="eager"
               decoding="async"
-              className="h-64 w-64 rounded-full border-4 border-white/10 object-cover shadow-2xl md:h-80 md:w-80"
+              className="h-56 w-56 rounded-full border-4 border-white/10 object-cover shadow-2xl sm:h-64 sm:w-64 lg:h-80 lg:w-80"
             />
           </div>
 
@@ -229,7 +229,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-16 grid grid-cols-3 gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-md md:mx-auto md:max-w-2xl">
+      <div className="mx-auto mt-16 grid w-full max-w-7xl grid-cols-3 gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-md">
         {STATS.map((stat) => (
           <div key={stat.label} className="text-center">
             <p className="font-display text-2xl font-bold text-gradient md:text-3xl">{stat.value}</p>

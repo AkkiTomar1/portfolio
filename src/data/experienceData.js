@@ -37,8 +37,3 @@ export const education = [
     period: "Aug 2020 – June 2023",
   },
 ];
-
-export const certifications = [
-  { name: "Mastering NestJS", issuer: "Coursera" },
-  { name: "Frontend Development", issuer: "Simplilearn" },
-];

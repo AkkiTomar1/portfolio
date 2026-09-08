@@ -10,7 +10,6 @@ import emailjs from "@emailjs/browser";
 import SectionHeading from "../components/SectionHeading";
 import { useScrollReveal } from "../utils/useScrollReveal";
 import { EMAILJS, CONTACT } from "../data/constants";
-import { socialLinks } from "../data/socialLinks";
 
 const INPUT_CLASSES =
   "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white placeholder:text-gray-500 backdrop-blur transition-all focus:border-pink-500/60 focus:outline-none focus:ring-2 focus:ring-pink-500/30";
@@ -106,26 +105,7 @@ export default function Contact() {
             </ul>
           </div>
 
-          <div className="glass-strong rounded-2xl p-7">
-            <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-              Follow me
-            </p>
-            <div className="mt-4 flex gap-3">
-              {socialLinks.map(({ name, url, icon: Icon }) => (
-                <a
-                  key={name}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={name}
-                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/50 hover:text-pink-400 hover:shadow-[0_6px_20px_rgba(255,45,149,0.35)]"
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
           </div>
-        </div>
 
         <div ref={formRef} className="reveal reveal-delay-1">
           <form
