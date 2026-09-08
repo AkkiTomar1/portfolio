@@ -79,7 +79,7 @@ export default function Navbar() {
       <div className="glass-strong border-b border-white/10">
         <div
           ref={headerRef}
-          className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 sm:px-10 md:px-14"
+          className="mx-auto flex w-full max-w-7xl items-center justify-between px-8 py-3 sm:px-12 md:px-16"
         >
           <button
             className="flex items-center gap-2.5 cursor-pointer bg-transparent border-0 p-0"

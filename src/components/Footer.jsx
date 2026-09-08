@@ -5,7 +5,7 @@ import { scrollToSection } from "../utils/scrollToSection";
 export default function Footer() {
   return (
     <footer className="relative mt-10 border-t border-white/10 bg-ink/60 text-gray-300 backdrop-blur-md">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-14 sm:px-10 md:grid-cols-3 md:px-14">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-8 py-14 sm:px-12 md:grid-cols-3 md:px-16">
         <div>
           <h3 className="font-display text-xl font-bold text-white">
             Akhilesh<span className="text-gradient">.</span> Singh
